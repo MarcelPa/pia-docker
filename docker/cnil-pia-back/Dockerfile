@@ -21,8 +21,10 @@ WORKDIR /var/www/
 RUN gem install bundler
 RUN bundle install
 
+RUN sed -i 's/# config.force_ssl = true/config.force_ssl = true/' config/environments/production.rb
+
 COPY entrypoint /entrypoint
 RUN chmod +x /entrypoint
 ENTRYPOINT ["/entrypoint"]
 
-CMD ["bin/rails", "server"]
+CMD ["bundle", "exec", "puma", "-b", "ssl://0.0.0.0:3000?key=/etc/selfsigned/development.key&cert=/etc/selfsigned/development.cert"]

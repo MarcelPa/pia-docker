@@ -15,13 +15,17 @@ services:
       - database
     ports:
       - 3000:3000
+    volumes:
+      - ./selfsigned_certs:/etc/selfsigned
 
   cnil-pia-front:
     container_name: LINCnil-pia-front
     build: docker/cnil-pia-front
     restart: always
     ports:
-      - 0.0.0.0:8080:80
+      - 0.0.0.0:8080:443
+    volumes:
+      - ./selfsigned_certs:/etc/selfsigned
 
   database:
     container_name: LINCnil-pia-db
