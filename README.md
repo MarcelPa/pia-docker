@@ -85,4 +85,4 @@ server {
 }
 ```
 
-This should do the trick, use `docker-compose up -d` as usual to start HTTPS-enabled pia!
+This should do the trick, use `docker-compose up -d` as usual to start HTTPS-enabled pia! An example using self-signed certificates can be found [here](https://github.com/MarcelPa/pia-docker) for testing purposes. Caveat: you need to access both - the frontend and the backend - and accept the unsecure self-signed certificate before being able to modify the settings (i.e. set the URL to https://localhost:3000 in the frontend).
